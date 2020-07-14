@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MATCHA</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+</head>
+<body id="clrblk">
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <!-- <div class="panel-heading">
+                    <div class="panel-title">Verification</div>
+                </div> -->
+                <div class="panel-heading">
+                    <!-- <div class="panel-title" href="homepage">Homepage</div> -->
+                    <div style="float:left; font-size: 85%; position: relative; top:-10px"><a id="signinlink"
+                            href="homepage">homepage</a>
+                    </div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink"
+                            href="logout">logout</a>
+                    </div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <% if (message.length > 0) { %>
+                        <div class="alert alert-danger col-sm-12"><%= message %></div>
+                        <% } %>
+                        <div class="form">
+                            <form action="verify.ejs" class="" method="post">
+                                <center><p class="message" ><h3>views...</p></h3>
+                                    <% views.forEach(function(iterm){ %>
+                                        <ul><%=iterm.viewer%></ul> 
+                                   <% }); %> 
+                                    <center><p class="message" ><h3>likes...</p></h3>
+                                        <% likes.forEach(function(iterm){ %>
+                                            <ul><%=iterm%></ul> 
+                                       <% }); %> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+</html

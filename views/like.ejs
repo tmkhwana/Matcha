@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <div>
+        <% include partials/menuV.ejs%>
+    </div>
+    <div>
+        <form action="like" method="post">
+            <label for="target_like">Who do you like</label>
+            <input type="text" name="target_like" id="like_text_box">
+            <br>
+            <label for="like_button">Let them know</label>
+            <button type="submit" id="like_button">submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

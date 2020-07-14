@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head.ejs%>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container col-sm-12" id="mainform">
+        <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <!-- <div class="panel-title" href="homepage">Homepage</div> -->
+                    <div style="float:left; font-size: 85%; position: relative; top:-10px"><a id="signinlink"
+                        href="homepage">homepage</a>
+                </div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink"
+                            href="logout">logout</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="update" role="form" method="post" action="/update" enctype="multipart/form-data"
+                        onSubmit="return checkblank(this);">
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_name" class="col-md-3 control-label">User Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="user_name" placeholder="User Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="first_name" class="col-md-3 control-label">First Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-md-3 control-label">Last Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" placeholder="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender" class="col-md-3 control-label">Gender</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="gender" placeholder="female/male">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexualpreference" class="col-md-3 control-label"> Sexual Preference</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="sexualpreference" placeholder="female/male/both">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="biography" class="col-md-3 control-label"> Biography </label>
+                            <div class="col-md-9">
+                                <textarea name="biography" form="update"></textarea>
+                                <!-- <form  id="biography"> -->
+                                    <input type="hidden" name="biography">
+                                <!-- </form> -->
+                                <!-- <input type="text" class="form-control" name="biography" placeholder="female/male/both"> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="interest" class="col-md-3 control-label">Interest</label>
+                            <div class="col-md-9">
+                                <!-- <input type="text" class="form-control" name="Gender" placeholder="female/male"> -->
+                                <input type="checkbox" name="extreme_sport" value="extreme_sport" /> extreme sport (bungee jumping, mountain biking/boarding, pakour etc.. ) </br>
+                                <input type="checkbox" name="outdoor_activities" value="outdoor_activities" />outdoor activities (hiking, picknick, swimming etc..) </br>
+                                <input type="checkbox" name="geek_sports" value="geek_sports" /> geek sports (online gaming, board games, dangens and dragons etc..) </br>
+                                <input type="checkbox" name="foodie" value="foodie" /> foodie (lover of food: vegan/non vegan etc..) </br>
+                                <input type="checkbox" name="BDSM" value="BDSM" /> BDSM (fifty shades of fun etc..)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherInterest" class="col-md-3 control-label"> Other Interest</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="otherInterest" placeholder="Other Interest">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Avator" class="col-md-3 control-label"> Avator</label>
+                            <div class="col-md-9">
+                                <!-- <input type="text" class="form-control" name="Gender" placeholder="female/male/both"> -->
+                                <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+                                    <h6> Select image for profile picture </h6>
+                                    <input type="file" name="avator" id="image" >
+                                    <!-- <input type="submit" value="Upload Image" name="upload"> -->
+                                <!-- </form> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="images" class="col-md-3 control-label"> Images</label>
+                            <div class="col-md-9">
+                                <!-- <input type="text" class="form-control" name="Gender" placeholder="female/male/both"> -->
+                                <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+                                    <h6> Select image1 for profile </h6>
+                                    <input type="file" name="image1" id="image" >
+                                    <h6> Select image2 for profile </h6>
+                                    <input type="file" name="image2" id="image" >
+                                    <h6> Select image3 for profile </h6>
+                                    <input type="file" name="image3" id="image" >
+                                    <h6> Select image4 for profile </h6>
+                                    <input type="file" name="image4" id="image" >
+                                    <!-- <input type="submit" value="Upload Image" name="upload"> -->
+                                <!-- </form> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="btn-signup" type="submit" class="btn btn-info"><i
+                                        class="icon-hand-right"></i> &nbsp submit </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

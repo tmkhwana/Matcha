@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MATCHA</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+</head>
+<body id="clrblk">
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Verification</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <% if (message.length > 0) { %>
+                        <div class="alert alert-danger col-sm-12"><%= message %></div>
+                        <% } %>
+                        <div class="form">
+                            <form action="verify.ejs" class="" method="post">
+                                <center><p class="message" ><h1>Almost done...</p></h1>
+                                    <p>We have sent you an email, please click on the link we just sent you. </p>
+                                    <p>you may login <a href="http://localhost:8082/">here</a></p></center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+</html

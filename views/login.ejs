@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <div class="login-form">
+        <h1>Login Form</h1>
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit">
+        </form><br>
+        <div style="text-align: center; color: red;">
+            <%if (typeof msg !== 'undefined') { %>
+                <%=msg%>
+            <% } %>
+        </div>
+        <div style="text-align: center">
+            <a href="/forgot">Reset password</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

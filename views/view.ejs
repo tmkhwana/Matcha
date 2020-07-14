@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/head.ejs%>
+</head>
+
+<body>
+  <div>
+    <% include partials/menuV.ejs%>
+  </div>
+  <div class="container-fluid bg-3 text-center">
+    <!-- <h4><%=page %></h4><br> -->
+    <h3> <%=user.firstname%> <%=user.lastname%> <%=user.username%></h3>
+    <button><a href="http://localhost:8082/like?uid=<%=user.id%>&username=<%=user.username%>">LIKE</a></button>
+    <button><a href="http://localhost:8082/ulike?uid=<%=user.id%>&username=<%=user.username%>">ULIKE</a></button> 
+    <button><a href="http://localhost:8082/block?uid=<%=user.id%>&username=<%=user.username%>">BLOCK</a></button>
+    <%if(data){%>
+      <div class="container">
+        <h3> Avator</h3>
+        <!-- <button> <a href="/update2">update</a></button> -->
+      <a><img src="http://localhost:8082/images/upload_images/<%=data.avator%>" alt="profile-picture" style="width:100%"  border="0" ></a>
+      <h4> More Me <h4>
+          <div class="row">
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image1%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image2%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image3%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image4%>" alt="picture" style="width:100%">
+            </div>
+            <!-- <button>  <a href="/update2">update</a></button> -->
+          </div>
+          <h5>About Me</h5>
+          <p><%=data.biography%></p>
+          <!-- <button>  <a href="/update2">update</a></button> -->
+          <%if(post){%>
+          <h6>My Interests</h6>
+          <div class="listFlex">
+
+              <% post.forEach(function(iterm){ %>
+                 <ul><li><p><%=iterm%></p><li></ul> 
+            <% }); %>
+            <!-- <div>
+              <ul>
+                <li><% if (post.extreme_sport) {%> <p> extremeSport</p> <%}; %></li>
+                <li><% if (post.outdoor_activities) {%> <p> outdoor</p> <%}; %></li>
+                <li><% if (post.geek_sports) {%> <p> geekSport</p> <%}; %></li>
+
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <li><% if (post.foodie) {%> <p> foodie</p> <%}; %></li>
+                <li><% if (post.BDSM) {%> <p> BDSM</p> <%}; %></li>
+                <li><% if (post.otherInterest) {%> <p> <%=post.otherInterest%></p> <%}; %></li>
+              </ul>
+            </div> -->
+          </div> <%}%>
+    </div><%}%>
+  </div>
+</body>
+<% include partials/script.ejs%>
+
+</html>

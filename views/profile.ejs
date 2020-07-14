@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/head.ejs%>
+</head>
+
+<body>
+  <div>
+    <% include partials/menuP.ejs%>
+  </div>
+  <div class="container-fluid bg-3 text-center">
+    <!-- <h4><%=page %></h4><br> -->
+    <h3> <%=firstname%> <%=lastname%> <%=username%></h3>
+    <%if(data){%>
+      <div class="container">
+        <h3> Avator</h3>
+        <button> <a href="/update2">update</a></button>
+        <button> <a href="/views"> views/likes</a></button> 
+      <a><img src="http://localhost:8082/images/upload_images/<%=data.avator%>" alt="profile-picture" style="width:100%"  border="0" ></a>
+      <h4> More Me <h4>
+          <div class="row">
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image1%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image2%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image3%>" alt="picture" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="http://localhost:8082/images/upload_images/<%=data.image4%>" alt="picture" style="width:100%">
+            </div>
+            <!-- <button>  <a href="/update2">update</a></button> -->
+          </div>
+          <h5>About Me</h5>
+          <p><%=data.biography%></p>
+          <!-- <button>  <a href="/update2">update</a></button> -->
+          <%if(post){%>
+          <h6>My Interests</h6>
+          <div class="listFlex">
+
+              <% post.forEach(function(iterm){ %>
+                 <ul><li><p><%=iterm%></p><li></ul> 
+            <% }); %>
+           
+          </div> <%}%>
+    </div><%}%>
+  </div>
+</body>
+<% include partials/script.ejs%>
+
+</html>

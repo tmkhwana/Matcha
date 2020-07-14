@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <% include partials/head.ejs%>
+  <style>
+    #stalk {
+      /* float: right; */
+      padding-left: 900px;
+    }
+
+    #human {
+      padding-left: 90px;
+      margin: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="human" class="container-fluid bg-3 text-center">
+    <div>
+      <% include partials/menuH.ejs%>
+    </div>
+    <h2><%= page %></h2><br>
+    <div class="row">
+      <%if(suggest.length != 0){%>
+
+      <% for (var i = 0; i < suggest.length;i++) { %>
+
+      <div class="col-md-4">
+
+
+        <div class="card mb-3" style="max-width: 540px; ">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="http://localhost:8082/images/upload_images/<%=suggest[i].avator%>" class="card-img"
+                alt="avator">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                ​
+                <h5 class="card-title"><%=suggest[i].username%>------><%=suggest[i].fame%></h5>
+                <p class="card-text"><%=suggest[i].age%></p>
+                <p class="card-text"><%=suggest[i].gender%></p>
+                <p class="card-text"><%=suggest[i].city%></p>
+                <a class="card-text" href ="http://localhost:8082/view?uid=<%=suggest[i].id%>&username=<%=suggest[i].username %>"><small class="text-muted">View</small></a> </br>
+                <% if (suggest[i].connection == "online"){%> <small class="text-muted">online</small> <%} else{%> <small class="text-muted">lastseen:<%=suggest[i].lastseen%></small> <%}%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <%} else{%>
+      <div class="col-sm-4">
+        <p>"Don't wait for the perfect moment, take a moment and make it perfetct." </br>--->Zoey Saywad</p>
+        <img src="images/connected.jpg" alt="pic" height="288px" width="500px">
+      </div>
+      <div class="col-sm-4">
+        <p> "Where ever you go, go with all your heart" </br> --->Confucius</p>
+        <img src="images/couple.jpeg" alt="pic" height="288px" width="500px">
+      </div>
+      <div class="col-sm-4">
+        <p>"In the end we only regret chances we didn't take!" </br> --->Lewis Carroll</p>
+        <img src="images/couple2.jpeg" alt="pic" height="288px" width="500px">
+      </div>
+      <%}%>
+    </div>
+  </div>
+  </div>
+</body>
+<% include partials/script.ejs%>
+
+</html>
+<script>
+  function saveLocation(position) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": `https://us1.locationiq.com/v1/reverse.php?key=495c41fb9cd1e4&lat=${position.latitude}&lon=${position.longitude}&format=json`,
+      "method": "GET"
+    }
+    var location;
+    $.ajax(settings).done(function (response) {
+      location = response;
+      var res = new Object();
+      res = {
+        "street": response.address.road,
+        "city": response.address.city,
+        "lat": position.latitude,
+        "lon": position.longitude,
+        "postal_code": response.address.postcode
+      };
+      console.log(response);
+      $.ajax({
+        "async": true,
+        "url": `http://localhost:8082/saveLocation`,
+        "data": res,
+        "contentType": "application/x-www-form-urlencoded",
+        "method": "POST"
+      }).done((response) => {
+        if (response.status == 200)
+          alert("SAVED TO DB");
+      });
+    });
+  }
+  window.onload = () => {
+    function doSomething(position) {
+      saveLocation(position.coords);
+    }
+    function hackLocation() {
+      settings = {
+        "async": true,
+        "url": "https://api.ipgeolocation.io/getip",
+        "crossDomain": true,
+        "method": "GET"
+      }
+      $.ajax(settings).done((response) => {
+        var key = "eb9fd14069d04eba981fe15324130f89";
+        settings = {
+          "async": true,
+          "url": `https://api.ipgeolocation.io/ipgeo?apiKey=${key}&fields=geo`,
+          "crossDomain": true,
+          "method": "GET"
+        }
+        $.ajax(settings).done((response) => {
+          locationSettings = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://us1.locationiq.com/v1/reverse.php?key=495c41fb9cd1e4&lat=${response.latitude}&lon=${response.longitude}&format=json`,
+            "method": "GET"
+          };
+          $.ajax(locationSettings).done(function (response) {
+            var location = response
+            console.log(response);
+            var res = new Object();
+            res = {
+              "street": response.address.road,
+              "city": response.address.city,
+              "lat": response.lat,
+              "lon": response.lon,
+              "postal_code": response.address.postcode
+            };
+            $.ajax({
+              "async": true,
+              "url": `http://localhost:8082/saveLocation`,
+              "data": res,
+              "contentType": "application/x-www-form-urlencoded",
+              "method": "POST"
+            }).done((response) => {
+              if (response.status == 200)
+                alert("SAVED TO DB");
+            });
+          });
+        });
+      });
+    }
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(doSomething, hackLocation);
+    else
+      alert("geolocation not supported")
+  }
+</script>
