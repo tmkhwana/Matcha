@@ -4,6 +4,7 @@ const faker = require('faker'),
 	//   ft_util 		= require('../includes/ft_util.js'),
 	count = 100;
 
+//function to create users
 function generate_user(i) {
 	if (i === count) {
 		console.log('Inserted ' + count + ' profile records.');
