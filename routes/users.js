@@ -43,7 +43,7 @@ function sendEmail(name, vcode, email) {
    });
 }
 
-
+//input validation
 router.signup = function (req, res) {
    message = '';
    console.log("register here");
@@ -94,7 +94,8 @@ router.signup = function (req, res) {
               res.render('register', { page: 'MATCHA', menuId: 'MATCHA', message: message });
            }
          } else {
-         
+
+            //if all is well then we insert the users info into the database "users"
             bcrypt.hash(pass, saltRounds, function (err, hash) {
                var sql = "INSERT INTO `users`(`username`,`firstname`,`lastname`,`email`, `password`,`vcode`, `birthdate` ) VALUES ('" + name + "','" + fname + "','" + lname + "','" + email + "','" + hash + "','" + vcode + "','" + birthd + "')";
                // var query = con.query(sql, function(err, result) {
@@ -786,7 +787,7 @@ router.update = function (req, res) {
                sess.profileId = results[0].id;
                var profileId = sess.profileId;
                // // console.log(profileId);            
-
+               //validate the image to see if it is the required or the excepted file type, do that check with all 5 images
                // var propic = post.avator;
                if (propic) {
                   var avator = propic.name;

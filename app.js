@@ -65,6 +65,7 @@ app.post('/signup', usersRouter.signup);//call for signup post
 app.post('/update', usersRouter.update);//call for upload post
 app.post('/update2', usersRouter.update2);//call for upload2 post
 
+//sendmail function used to notify the user whenever someone likes thier profile
 function sendEmail(name, email) {
   var text = "Hello there your  matcha profile was like by" + " " + name
   transporter = nodemailer.createTransport({
@@ -89,6 +90,7 @@ function sendEmail(name, email) {
   });
 }
 
+//function used send the user a mail whenever they need to reset their password
 app.get('/forgot', (req, res) => {
   console.log('hello')
   res.render('forgot', {page: 'Forgot Password', menuId: 'Forgot Password'})
@@ -149,6 +151,7 @@ app.get('/reset', function (require, response) {
   });
 });
 
+//reset password page check if the new password matches the pass validations
 app.post('/reset', (require, response) => {
   var id = require.body.id,
       pass1 = require.body.pass1,

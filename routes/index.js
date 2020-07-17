@@ -37,7 +37,7 @@ router.get('/login', function (req, res, next) {
   res.render('login', { page: 'MATCHA', menuId: 'MATCHA', msg: message });
 });
 
-/* GET reister page*/
+/* GET register page*/
 router.get('/register', function (req, res, next) {
   // console.log("register");
   var message = '';
@@ -124,6 +124,7 @@ router.post('/saveLocation', function (req, res, next) {
   });
 });
 
+//function to send you an email whenever someone views your profile
 function sendEmail(name, email) {
   var text = "Hello there your  matcha profile was viewed by" + " " + name
   transporter = nodemailer.createTransport({
@@ -154,7 +155,7 @@ router.get('/view', function (req, res, next) {
   var username = req.query.username;
   var userID = req.query.uid;
   var name = sess.user.username
-
+//insert into the database "views" who viewed and who was viewed
   con.query(`SELECT * FROM views WHERE viewee ="${username}" AND viewer ="${sess.user.username}"`, (err, results) => {
     if (results.length == 0) {
       con.query(`INSERT INTO views (user_id, viewer, viewee) VALUES ("${sess.userId}", "${sess.user.username}", "${username}")`)
@@ -245,6 +246,7 @@ router.get('/like', (req, res) => {
   });
 });
 
+//active users
 router.get('/activate', function (req, res, next) {
 
   var username = req.query.name;
@@ -258,6 +260,7 @@ router.get('/activate', function (req, res, next) {
   })
 })
 
+//sendmail when someone unlikes
 function sendll(name, email) {
   var text = "Hello there your  matcha profile was uliked by" + " " + name + "."
   transporter = nodemailer.createTransport({
@@ -305,6 +308,7 @@ router.get('/ulike', (req, res, next) => {
   })
 })
 
+//sendmail when someone blocks you
 function sendmll(name, email) {
   var text = "Hello there your  matcha profile was blocked by" + " " + name + " please contact matcha admin for review."
   transporter = nodemailer.createTransport({
