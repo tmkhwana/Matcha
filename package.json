@@ -22,7 +22,7 @@
     "mysql": "^2.18.1",
     "node": "^13.6.0",
     "nodemailer": "^6.4.2",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "password-validator": "^5.0.3",
     "regex": "^0.1.1",
     "req-flash": "0.0.3",
