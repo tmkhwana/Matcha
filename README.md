@@ -27,3 +27,16 @@
 
 - run node entry to start the server
 - navigate to localhost:3000 in your browser to open the website
+
+## 🧩 Code Breakdown
+
+- App folder structure
+- views
+  - layouts 
+    - main.handlebars | This is where the overall structure of all of the views is defined including html tags, bootstrap configuration and any javascript files.
+- partials
+  - head.handlebars
+    - nav.handlebars | This contains the structure of the nav bar which is consistent throughout application.
+- routes | Handles the back end functionality and the rendering of views
+  -  login.js | Handles user login by cross checking a users email and password.
+  - signup.js | Handles user signup by taking 
